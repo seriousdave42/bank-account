@@ -3,6 +3,7 @@
 
 @{
     decimal balance = Model.Sum(t => t.Amount);
+    List<Transaction> recent = Model.Take(6).ToList();
 }
 
 <h1>Welcome, @ViewBag.LoggedName</h1>
@@ -18,7 +19,7 @@
             <th>Amount</th>
             <th>Date</th>
         </tr>
-        @foreach(var t in Model)
+        @foreach(var t in recent)
         {
             <tr>
                 <td>@t.Amount.ToString("F")</td>
