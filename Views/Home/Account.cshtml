@@ -1,0 +1,32 @@
+@using BankAccounts.Models;
+@model List<Transaction>;
+
+@{
+    decimal balance = Model.Sum(t => t.Amount);
+}
+
+<h1>Welcome, @ViewBag.LoggedName</h1>
+
+<h3>Current Balance: $@balance.ToString("F")</h3>
+
+<partial name="_NewTransaction" model="new Transaction(){UserId = @ViewBag.LoggedId}"/>
+
+<div class="col-9">
+    <h3>Recent Transactions</h3>
+    <table class="table table-striped">
+        <tr>
+            <th>Amount</th>
+            <th>Date</th>
+        </tr>
+        @foreach(var t in Model)
+        {
+            <tr>
+                <td>@t.Amount.ToString("F")</td>
+                <td>@t.CreatedAt.ToShortDateString()</td>
+            </tr>
+        }
+    </table>
+</div>
+
+<br>
+<a class="btn btn-info" asp-action="Logout">Logout</a>

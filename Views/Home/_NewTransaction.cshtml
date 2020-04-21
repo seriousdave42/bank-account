@@ -1,0 +1,14 @@
+@model Transaction
+
+<form asp-action="Transact" asp-route-userID="@Model.UserId" method="post">
+    <span asp-validation-for="Amount" class="text-danger"></span><br>
+    <div class="form-row align-items-center">
+        <div class="col-auto">
+            <label asp-for="Amount">Deposit/Withdraw: $</label>
+            <input asp-for="Amount" type="number" step=".01" class="form-control mb-2">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+        </div>
+    </div>
+</form>
